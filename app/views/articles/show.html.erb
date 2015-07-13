@@ -1,4 +1,6 @@
 <h1><%= @article.title %></h1>
 <p><%= @article.body %></p>
 <%= raw(@article.song_link) %>
+<h3>Comments</h3>
+<%= render partial: 'articles/comment', collection: @article.comments %>
 <br>
