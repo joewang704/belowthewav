@@ -1,0 +1,24 @@
+<div class="col-md-8">
+    <% @articles.each do |article| %>
+      <div class = "article">
+        <h1><%= article.title %></h1>
+        <%= raw(article.song_link) %>
+        <br><br>
+        <%= article.body %>
+        <hr>
+      </div>
+    <% end %>
+  </ul>
+</div>
+<div class="col-md-4">
+  <h2>Recent Posts</h2>
+  <br>
+  <ul id="indexArticleList">
+    <% @articles.each do |article| %>
+      <li>
+        <%= link_to article.title, article_path(article) %>
+        <%= article.updated_at %>
+      </li>
+    <% end %>
+  </ul>
+</div>
