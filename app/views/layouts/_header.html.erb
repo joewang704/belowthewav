@@ -7,13 +7,11 @@
         <li><%= link_to "About",   about_path %></li>
         <li><%= link_to "Archive",   articles_path %></li>
       <% if admin_signed_in? %>
-
-        <li>Logged in as ADMIN <strong><%= current_admin.email %></strong></li>
+        <li><%= link_to "ADMIN", "#",  :class => 'navbar-link' %></li>
         <li><%= link_to "Logout", destroy_admin_session_path, method: :delete,
         :class => 'navbar-link'  %></li>
       <% elsif user_signed_in? %>
-        <li>Logged in as <strong><%= current_user.email %></strong></li>
-        <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %></li>
+        <li><%= link_to current_user.email, edit_user_registration_path, :class => 'navbar-link' %></li>
         <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
       <% else %>
         <li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
