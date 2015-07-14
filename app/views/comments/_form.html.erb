@@ -1,0 +1,15 @@
+<% if user_signed_in? %>
+  <h2>Post a Comment</h2>
+    <%= form_for [ @article, @comment ] do |f| %>
+      <p>
+        <%= f.label :body %><br/>
+        <%= f.text_area :body %>
+      </p>
+      <p>
+        <%= f.submit 'Submit' %>
+      </p>
+  <% end %>
+<% else %>
+  You must <%= link_to 'login', new_user_session_path %>
+  before posting comments
+<% end %>

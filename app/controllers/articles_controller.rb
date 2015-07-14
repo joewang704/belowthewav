@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_admin!, :only => [:new, :create]
+  before_action :deny_access, :unless => :is_poster?,
+                :only => [:new, :create]
 
   def index
     @articles = Article.all
@@ -7,6 +8,8 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    @comment = Comment.new
+    @comment.article_id = @article.id
   end
 
   def new
@@ -26,5 +29,9 @@ class ArticlesController < ApplicationController
 
     def article_params
       params.require(:article).permit(:title, :song_link, :body)
+    end
+
+    def is_poster?
+      current_user.poster?
     end
 end
