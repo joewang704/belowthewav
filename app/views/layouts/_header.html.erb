@@ -7,6 +7,11 @@
         <li><%= link_to "About",   about_path %></li>
         <li><%= link_to "Archive",   articles_path %></li>
       <% if user_signed_in? %>
+        <% if current_user.poster? %>
+          <li>
+            <%= link_to 'Post Article', new_article_path, :class => 'navbar-link' %></li>
+          </li>
+        <% end %>
         <li>
           <%= link_to current_user.email, edit_user_registration_path, :class => 'navbar-link' %></li>
         <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
