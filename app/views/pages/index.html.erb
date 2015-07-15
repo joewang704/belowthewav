@@ -1,7 +1,7 @@
 <div class="col-md-8">
     <% @articles.each do |article| %>
       <div class = "article">
-        <h1><%= article.title %></h1>
+        <h1><%= link_to article.title, article_path(article) %></h1>
         <%= raw(article.song_link) %>
         <br><br>
         <%= article.body %>
@@ -10,7 +10,7 @@
     <% end %>
   </ul>
 </div>
-<div class="col-md-4">
+<div class="col-md-4 hidden-xs hidden-sm">
   <h2>Recent Posts</h2>
   <br>
   <ul id="indexArticleList">

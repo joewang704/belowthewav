@@ -1,24 +1,26 @@
+<div class = "col-md-offset-3 col-md-6">
+
 <h1>Create a New Article</h1>
 
-<%= form_for(@article) do |f| %>
+<%= form_for(@article, html: { role: "form" }) do |f| %>
   <ul>
   <% @article.errors.full_messages.each do |error| %>
     <li><%= error %></li>
   <% end %>
   </ul>
-  <p>
+  <div class="form-group">
     <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </p>
-  <p>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+  <div class="form-group">
     <%= f.label :song_link, 'Embed Code from Soundcloud' %><br />
-    <%= f.text_field :song_link %>
-  </p>
-  <p>
+    <%= f.text_field :song_link, class: "form-control" %>
+  </div>
+  <div class="form-group">
     <%= f.label :body %><br />
-    <%= f.text_area :body %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
+    <%= f.text_area :body, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.submit "Create Article", class: "form-control" %>
+  </div>
 <% end %>
