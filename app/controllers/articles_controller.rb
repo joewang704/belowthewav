@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :deny_access, :unless => :is_poster?,
+  before_action :verify_poster,
                 :only => [:new, :create]
 
   def index
@@ -31,7 +31,7 @@ class ArticlesController < ApplicationController
       params.require(:article).permit(:title, :song_link, :body)
     end
 
-    def is_poster?
-      current_user.poster?
+    def verify_poster
+      (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.poster?)
     end
 end
